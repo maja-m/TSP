@@ -23,6 +23,16 @@ namespace TSP
         //static Osobnik SelekcjaRuletkaWartościowa(Osobnik[] populacja)
         //{
         //    //----------------------------------------------------------------------------------------------------------------------
+        //    double[] punktyOsobników = new double[populacja.Length];
+
+        //    for (int i = 0; i < populacja.Length; i++)
+        //        punktyOsobników[i] = 1 / populacja[i].SzybkośćTrasy();
+
+        //    double sumaPunktów = 0;
+        //    for (int i = 0; i < punktyOsobników.Length; i++)
+        //        sumaPunktów += punktyOsobników[i];
+
+
         //}
     }
 }

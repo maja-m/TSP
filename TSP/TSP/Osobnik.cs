@@ -17,7 +17,7 @@ namespace TSP
             genotyp = new List<int>();
         }
 
-        public static Osobnik PorównajOsobników(Osobnik osobnik1, Osobnik osobnik2)
+        public static Osobnik PorównajOsobników(Osobnik osobnik1, Osobnik osobnik2)             //-----------------------todo sprawdzaj czy osobnik się nadaje (t != 0)
         {
             if (osobnik1.SzybkośćTrasy() < osobnik2.SzybkośćTrasy())
                 return osobnik1;
@@ -45,11 +45,9 @@ namespace TSP
 
         public double OdległośćMiędzyOSobnikami(int idPierwszego, int idDrugiego)
         {
-            double suma = 0;
             var x2 = Math.Pow(listaMiast[idDrugiego].x - listaMiast[idPierwszego].x, 2);
             var y2 = Math.Pow(listaMiast[idDrugiego].y - listaMiast[idPierwszego].y, 2);
-            suma += Math.Sqrt(x2 + y2);
-            return suma;
+            return Math.Sqrt(x2 + y2);
         }
 
         public Osobnik WymieszajOsobnika()
@@ -75,9 +73,10 @@ namespace TSP
             double tOdcinka;
             double s = DługośćTrasy;
             double sOdcinka;
+            double sOdcinkaDoBaterii;
             double vOdcinka;
             double v0;
-            int liczbaBaterii = 500;                          //------------------------------------------------------------liczba baterii
+            int liczbaBaterii = 50;                          //------------------------------------------------------------liczba baterii
 
             List<double> baterie = new List<double>(); ;      
             for (int i = 0; i < liczbaBaterii; i++)
@@ -87,20 +86,22 @@ namespace TSP
             {
                 //rozładowywanie baterii
                 sOdcinka = OdległośćMiędzyOSobnikami(i, i + 1);
-                while (sOdcinka > 0)
+                sOdcinkaDoBaterii = sOdcinka;
+
+                while (sOdcinkaDoBaterii > 0)
                 {
                     if (baterie.Count == 0)
                         return 0;
 
-                    if (baterie[baterie.Count - 1] < sOdcinka)
+                    if (baterie[baterie.Count - 1] < sOdcinkaDoBaterii)
                     {
                         baterie.RemoveAt(baterie.Count - 1);
-                        sOdcinka -= 1000;
+                        sOdcinkaDoBaterii -= 1000;
                     }
                     else
                     {
-                        baterie[baterie.Count - 1] -= sOdcinka;
-                        sOdcinka = 0;
+                        baterie[baterie.Count - 1] -= sOdcinkaDoBaterii;
+                        sOdcinkaDoBaterii = 0; // TODO to wszystko psuje --------------------------------------------------------------------------------
                     }
                 }
 
