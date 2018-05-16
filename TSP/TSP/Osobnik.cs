@@ -68,5 +68,36 @@ namespace TSP
             genotyp[punkt2] = temp;
             return this;
         }
+
+        //public bool CzySpełniaOgraniczenia()                                      //-----------------------------------------------BATERIE i inne ograniczenia
+        //{
+        //    double t = 0;
+        //    double v0;
+
+        //    List<double> baterie = new List<double>(); ;      //------------------------------------------------------------liczba baterii
+        //    for (int i = 0; i < 500; i++)
+        //        baterie.Add(1000);
+
+        //    int pierwszeMiasto = genotyp[0];
+
+        //    for (int i = 1; i < genotyp.Count - 1; i++)
+        //    {
+        //        //ładowanie baterii
+        //        if (genotyp[i] % 5 == 0)
+        //        {
+        //            if (baterie.Count != 0)
+        //                baterie[baterie.Count - 1] = 1000;
+
+        //            for (int j = baterie.Count; j < 500; j++)
+        //                baterie.Add(1000);
+        //        }
+
+        //        v0 = 10 - (listaMiast[genotyp[i + 1]].z - listaMiast[genotyp[i]].z);
+
+                
+
+        //    }
+        //    double t = S / V;
+        //}
     }
 }
