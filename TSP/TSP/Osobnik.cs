@@ -19,7 +19,7 @@ namespace TSP
 
         public static Osobnik PorównajOsobników(Osobnik osobnik1, Osobnik osobnik2)
         {
-            if (osobnik1.DługośćTrasy < osobnik2.DługośćTrasy)
+            if (osobnik1.SzybkośćTrasy() < osobnik2.SzybkośćTrasy())
                 return osobnik1;
             else
                 return osobnik2;
@@ -69,35 +69,62 @@ namespace TSP
             return this;
         }
 
-        //public bool CzySpełniaOgraniczenia()                                      //-----------------------------------------------BATERIE i inne ograniczenia
-        //{
-        //    double t = 0;
-        //    double v0;
+        public double SzybkośćTrasy()                                      //-----------------------------------------------BATERIE
+        {
+            double t = 0;
+            double tOdcinka;
+            double s = DługośćTrasy;
+            double sOdcinka;
+            double vOdcinka;
+            double v0;
+            int liczbaBaterii = 500;                          //------------------------------------------------------------liczba baterii
 
-        //    List<double> baterie = new List<double>(); ;      //------------------------------------------------------------liczba baterii
-        //    for (int i = 0; i < 500; i++)
-        //        baterie.Add(1000);
+            List<double> baterie = new List<double>(); ;      
+            for (int i = 0; i < liczbaBaterii; i++)
+                baterie.Add(1000);
+            
+            for (int i = 0; i < genotyp.Count - 1; i++)
+            {
+                //rozładowywanie baterii
+                sOdcinka = OdległośćMiędzyOSobnikami(i, i + 1);
+                while (sOdcinka > 0)
+                {
+                    if (baterie.Count == 0)
+                        return 0;
 
-        //    int pierwszeMiasto = genotyp[0];
+                    if (baterie[baterie.Count - 1] < sOdcinka)
+                    {
+                        baterie.RemoveAt(baterie.Count - 1);
+                        sOdcinka -= 1000;
+                    }
+                    else
+                    {
+                        baterie[baterie.Count - 1] -= sOdcinka;
+                        sOdcinka = 0;
+                    }
+                }
 
-        //    for (int i = 1; i < genotyp.Count - 1; i++)
-        //    {
-        //        //ładowanie baterii
-        //        if (genotyp[i] % 5 == 0)
-        //        {
-        //            if (baterie.Count != 0)
-        //                baterie[baterie.Count - 1] = 1000;
+                //ładowanie baterii
+                if (genotyp[i] % 5 == 1)
+                {
+                    if (baterie.Count != 0)
+                        baterie[baterie.Count - 1] = 1000;
 
-        //            for (int j = baterie.Count; j < 500; j++)
-        //                baterie.Add(1000);
-        //        }
+                    for (int j = baterie.Count; j < liczbaBaterii; j++)
+                        baterie.Add(1000);
+                }
 
-        //        v0 = 10 - (listaMiast[genotyp[i + 1]].z - listaMiast[genotyp[i]].z);
+                //jeśli po dojechaniu nie mamy baterii i nie naładowaliśmy, musimy przerwać jazdę (trasa nie spełnie warunków)
+                if (baterie.Count == 0 || baterie[0] == 0)
+                    return 0;                                                                                                       //błędna trasa zwraca 0
 
-                
+                v0 = 10 - (listaMiast[genotyp[i + 1]].z - listaMiast[genotyp[i]].z);
+                vOdcinka = v0 * (1 - 0.01 * baterie.Count);
+                tOdcinka = sOdcinka / vOdcinka;
+                t += tOdcinka;
+            }
 
-        //    }
-        //    double t = S / V;
-        //}
+            return t;
+        }
     }
 }

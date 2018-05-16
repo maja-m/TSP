@@ -71,9 +71,13 @@ namespace TSP
 
                 for (int j = 0; j < wielkośćPopulacji; j++)
                 {
-                    Osobnik tata = Selekcja.SelekcjaZwykła(populacja);
-                    Osobnik mama = Selekcja.SelekcjaZwykła(populacja);
+                    Osobnik tata = Selekcja.SelekcjaTurniejowa(populacja);
+                    Osobnik mama = Selekcja.SelekcjaTurniejowa(populacja);
                     Osobnik dziecko = Krzyżowanie.KrzyżowanieOX(tata, mama);
+
+                    //Console.WriteLine(tata.SzybkośćTrasy());
+                    //Console.WriteLine(mama.SzybkośćTrasy());
+                    //Console.WriteLine(dziecko.SzybkośćTrasy());
 
                     //konkurencja między rodzicami i dzieckiem
                     if (tata.DługośćTrasy < mama.DługośćTrasy)
@@ -91,7 +95,7 @@ namespace TSP
             Console.WriteLine("Znaleziona ścieżka: ");
             for (int i = 0; i < niebo.genotyp.Count; i++)
                 Console.Write(Osobnik.listaMiast[niebo.genotyp[i]].indeks + " ");
-            Console.WriteLine("\nDługość trasy: " + niebo.DługośćTrasy);
+            Console.WriteLine("\nSzybkość trasy: " + niebo.SzybkośćTrasy());
 
             using (System.IO.StreamWriter plik =
             new System.IO.StreamWriter(@"../../Wyniki/gr9882.txt"))         ///rename file-------------------------------------------
@@ -99,7 +103,7 @@ namespace TSP
                 for (int i = 0; i < niebo.genotyp.Count; i++)
                     plik.Write(Osobnik.listaMiast[niebo.genotyp[i]].indeks + " ");
                 plik.WriteLine();
-                plik.WriteLine("\nDługość trasy: " + niebo.DługośćTrasy);
+                plik.WriteLine("\nSzybkość trasy: " + niebo.SzybkośćTrasy());
                 plik.WriteLine();
             }
 

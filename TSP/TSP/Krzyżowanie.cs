@@ -37,10 +37,10 @@ namespace TSP
 
             if (Program.random.NextDouble() < prawdopodobieństwoMutacji)
                 dziecko = dziecko.Mutacja();
-            
+
             Program.niebo = Osobnik.PorównajOsobników(dziecko, Program.niebo);
 
-            Console.WriteLine("\nDługość trasy nieba: " + Program.niebo.DługośćTrasy);
+            Console.WriteLine("\nSzybkość trasy nieba: " + Program.niebo.SzybkośćTrasy());
 
             return dziecko;
         }
