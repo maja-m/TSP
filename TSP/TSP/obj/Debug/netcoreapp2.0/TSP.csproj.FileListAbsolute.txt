@@ -9,3 +9,4 @@ C:\Users\ninji\Google Drive\Learning\SGGW\Obliczenia ewolucyjne\Projekt\TSP\TSP\
 C:\Users\ninji\Google Drive\Learning\SGGW\Obliczenia ewolucyjne\Projekt\TSP\TSP\TSP\obj\Debug\netcoreapp2.0\TSP.AssemblyInfo.cs
 C:\Users\ninji\Google Drive\Learning\SGGW\Obliczenia ewolucyjne\Projekt\TSP\TSP\TSP\obj\Debug\netcoreapp2.0\TSP.dll
 C:\Users\ninji\Google Drive\Learning\SGGW\Obliczenia ewolucyjne\Projekt\TSP\TSP\TSP\obj\Debug\netcoreapp2.0\TSP.pdb
+C:\Users\ninji\Google Drive\Learning\SGGW\Obliczenia ewolucyjne\Projekt\TSP\TSP\TSP\bin\Debug\netcoreapp2.0\TSP.dll.config

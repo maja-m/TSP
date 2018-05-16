@@ -47,10 +47,25 @@ namespace TSP
         {
             Osobnik[] populacja = StwórzPopulacjęZPliku("../../gr9882.tsp");
 
+            //algorytm zachłanny
+            //Osobnik nieboZZachłannego = AlgorytmZachłanny.Algorytm(populacja[0]);
+
+            //using (System.IO.StreamWriter plik =
+            //new System.IO.StreamWriter(@"../../Wyniki/Zgr9882.txt"))         ///rename file-------------------------------------------
+            //{
+            //    for (int i = 0; i < nieboZZachłannego.genotyp.Count; i++)
+            //        plik.Write(Osobnik.listaMiast[nieboZZachłannego.genotyp[i]].indeks + " ");
+            //    plik.WriteLine();
+            //    plik.WriteLine("\nDługość trasy: " + nieboZZachłannego.DługośćTrasy);
+            //    plik.WriteLine();
+            //    plik.Close();
+            //}
+
+            //algorytm ewolucyjny
             //for (int i = 0; i < liczbaPokoleń; i++)
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            while (stopwatch.ElapsedMilliseconds <= 1000 * 60 * 10)
+            while (stopwatch.ElapsedMilliseconds <= 1000 * 10)
             {
                 Osobnik[] nowaPopulacja = new Osobnik[wielkośćPopulacji];
 
@@ -59,9 +74,16 @@ namespace TSP
                     Osobnik tata = Selekcja.SelekcjaZwykła(populacja);
                     Osobnik mama = Selekcja.SelekcjaZwykła(populacja);
                     Osobnik dziecko = Krzyżowanie.KrzyżowanieOX(tata, mama);
-                    nowaPopulacja[j] = dziecko;
-                }
 
+                    //konkurencja między rodzicami i dzieckiem
+                    if (tata.DługośćTrasy < mama.DługośćTrasy)
+                        nowaPopulacja[j] = tata;
+                    else
+                        nowaPopulacja[j] = mama;
+
+                    if (dziecko.DługośćTrasy < nowaPopulacja[j].DługośćTrasy)
+                        nowaPopulacja[j] = dziecko;
+                }
                 populacja = nowaPopulacja;
             }
             stopwatch.Stop();
@@ -70,6 +92,16 @@ namespace TSP
             for (int i = 0; i < niebo.genotyp.Count; i++)
                 Console.Write(Osobnik.listaMiast[niebo.genotyp[i]].indeks + " ");
             Console.WriteLine("\nDługość trasy: " + niebo.DługośćTrasy);
+
+            using (System.IO.StreamWriter plik =
+            new System.IO.StreamWriter(@"../../Wyniki/gr9882.txt"))         ///rename file-------------------------------------------
+            {
+                for (int i = 0; i < niebo.genotyp.Count; i++)
+                    plik.Write(Osobnik.listaMiast[niebo.genotyp[i]].indeks + " ");
+                plik.WriteLine();
+                plik.WriteLine("\nDługość trasy: " + niebo.DługośćTrasy);
+                plik.WriteLine();
+            }
 
             Console.ReadKey();
         }

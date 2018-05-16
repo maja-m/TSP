@@ -43,11 +43,30 @@ namespace TSP
             }
         }
 
+        public double OdległośćMiędzyOSobnikami(int idPierwszego, int idDrugiego)
+        {
+            double suma = 0;
+            var x2 = Math.Pow(listaMiast[idDrugiego].x - listaMiast[idPierwszego].x, 2);
+            var y2 = Math.Pow(listaMiast[idDrugiego].y - listaMiast[idPierwszego].y, 2);
+            suma += Math.Sqrt(x2 + y2);
+            return suma;
+        }
+
         public Osobnik WymieszajOsobnika()
         {
             Osobnik nowyOsobnik = new Osobnik();
             nowyOsobnik.genotyp = new List<int>(genotyp).OrderBy(x => Program.random.Next()).ToList();
             return nowyOsobnik;
+        }
+
+        public Osobnik Mutacja()
+        {
+            int punkt1 = Program.random.Next(genotyp.Count);
+            int punkt2 = Program.random.Next(genotyp.Count);
+            int temp = genotyp[punkt1];
+            genotyp[punkt1] = genotyp[punkt2];
+            genotyp[punkt2] = temp;
+            return this;
         }
     }
 }
