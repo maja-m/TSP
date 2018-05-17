@@ -12,7 +12,7 @@ namespace TSP
 
         public static string nazwaPlikuWejściowego = ConfigurationManager.AppSettings["nazwaPlikuWejściowego"] ?? "gr9882";
         public static int wielkośćPopulacji = int.Parse(ConfigurationManager.AppSettings["wielkośćPopulacji"] ?? "100");
-        public static int liczbaPokoleń = int.Parse(ConfigurationManager.AppSettings["liczbaPokoleń"] ?? "1");
+        public static int liczbaPokoleń = int.Parse(ConfigurationManager.AppSettings["liczbaPokoleń"] ?? "5");
         public static string krzyżowanie = ConfigurationManager.AppSettings["krzyżowanie"] ?? "OX";
         public static int liczbaBaterii = int.Parse(ConfigurationManager.AppSettings["liczbaBaterii"] ?? "85");
         public static string selekcja = ConfigurationManager.AppSettings["selekcja"] ?? "turniejowa";
@@ -58,58 +58,111 @@ namespace TSP
             //algorytm zachłanny
             //Osobnik nieboZZachłannego = AlgorytmZachłanny.Algorytm(populacja[0]);
 
-            //using (System.IO.StreamWriter plik =
-            //new System.IO.StreamWriter(@"../../Wyniki/Z" + nazwaPlikuWejściowego + "-" + wielkośćPopulacji + "-" + czasObliczeń + "-" + krzyżowanie + "-" + liczbaBaterii + "-" + prawdopodobieństwoMutacji + "-" + selekcja + "-" + DateTime.Now.ToString().Replace(':', '-') + ".txt")))
-            //{
-            //    for (int i = 0; i < nieboZZachłannego.genotyp.Count; i++)
-            //        plik.Write(Osobnik.listaMiast[nieboZZachłannego.genotyp[i]].indeks + " ");
-            //    plik.WriteLine();
-            //    plik.WriteLine("\nDługość trasy: " + nieboZZachłannego.DługośćTrasy);
-            //    plik.WriteLine();
-            //    plik.Close();
-            //}
-
             //algorytm ewolucyjny
-            for (int i = 0; i < liczbaPokoleń; i++)
-            //Stopwatch stoper = new Stopwatch();
-            //stoper.Start();
-            //while (stoper.ElapsedMilliseconds <= czasObliczeń)
-            {
-                Osobnik[] nowaPopulacja = new Osobnik[wielkośćPopulacji];
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-                for (int j = 0; j < wielkośćPopulacji; j++)
-                {
-                    Osobnik tata = Selekcja.SelekcjaTurniejowa(populacja);
-                    Osobnik mama = Selekcja.SelekcjaTurniejowa(populacja);
-                    Osobnik dziecko = Krzyżowanie.KrzyżowanieOX(tata, mama);
+            //testy dla OX i turnieju - zmiany wielkości populacji
+            nazwaPlikuWejściowego = "gr9882";
+            wielkośćPopulacji = 10;
+            liczbaPokoleń = 5;
+            liczbaBaterii = 99;
+            prawdopodobieństwoMutacji = 0.5;
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-                    //konkurencja między rodzicami i dzieckiem
-                    if (tata.DługośćTrasy < mama.DługośćTrasy)
-                        nowaPopulacja[j] = tata;
-                    else
-                        nowaPopulacja[j] = mama;
+            nazwaPlikuWejściowego = "gr9882";
+            wielkośćPopulacji = 50;
+            liczbaPokoleń = 5;
+            liczbaBaterii = 99;
+            prawdopodobieństwoMutacji = 0.5;
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-                    if (dziecko.DługośćTrasy < nowaPopulacja[j].DługośćTrasy)
-                        nowaPopulacja[j] = dziecko;
-                }
-                populacja = nowaPopulacja;
-            }
-            //stoper.Stop();
+            nazwaPlikuWejściowego = "gr9882";
+            wielkośćPopulacji = 100;
+            liczbaPokoleń = 5;
+            liczbaBaterii = 99;
+            prawdopodobieństwoMutacji = 0.5;
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-            Console.WriteLine("Znaleziona ścieżka: ");
-            for (int i = 0; i < niebo.genotyp.Count; i++)
-                Console.Write(Osobnik.listaMiast[niebo.genotyp[i]].indeks + " ");
-            Console.WriteLine("\nSzybkość trasy: " + niebo.SzybkośćTrasy());
+            nazwaPlikuWejściowego = "gr9882";
+            wielkośćPopulacji = 500;
+            liczbaPokoleń = 5;
+            liczbaBaterii = 99;
+            prawdopodobieństwoMutacji = 0.5;
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-            using (System.IO.StreamWriter zapisator =
-            new System.IO.StreamWriter(@"../../Wyniki/" + nazwaPlikuWejściowego + "-" + wielkośćPopulacji + "-" + liczbaPokoleń + "-" + krzyżowanie + "-" + liczbaBaterii + "-" + prawdopodobieństwoMutacji + "-" + selekcja + "-" + DateTime.Now.ToString().Replace(':', '-') + ".txt"))
-            {
-                for (int i = 0; i < niebo.genotyp.Count; i++)
-                    zapisator.Write(Osobnik.listaMiast[niebo.genotyp[i]].indeks + " ");
-                zapisator.WriteLine();
-                zapisator.WriteLine("\nSzybkość trasy: " + niebo.SzybkośćTrasy());
-                zapisator.WriteLine();
-            }
+            //testy dla OX i turnieju - zmiany liczby pokoleń
+            nazwaPlikuWejściowego = "gr9882";
+            wielkośćPopulacji = 100;
+            liczbaPokoleń = 1;
+            liczbaBaterii = 99;
+            prawdopodobieństwoMutacji = 0.5;
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+
+            nazwaPlikuWejściowego = "gr9882";
+            wielkośćPopulacji = 100;
+            liczbaPokoleń = 10;
+            liczbaBaterii = 99;
+            prawdopodobieństwoMutacji = 0.5;
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+
+            //testy dla OX i turnieju - zmiany liczby baterii
+            nazwaPlikuWejściowego = "gr9882";
+            wielkośćPopulacji = 100;
+            liczbaPokoleń = 5;
+            liczbaBaterii = 85;
+            prawdopodobieństwoMutacji = 0.5;
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+
+            nazwaPlikuWejściowego = "gr9882";
+            wielkośćPopulacji = 100;
+            liczbaPokoleń = 5;
+            liczbaBaterii = 50;
+            prawdopodobieństwoMutacji = 0.5;
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+
+            nazwaPlikuWejściowego = "gr9882";
+            wielkośćPopulacji = 100;
+            liczbaPokoleń = 5;
+            liczbaBaterii = 22;
+            prawdopodobieństwoMutacji = 0.5;
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+
+            //testy dla OX i turnieju - zmiany prawdopodobieństwa mutacji
+            nazwaPlikuWejściowego = "gr9882";
+            wielkośćPopulacji = 100;
+            liczbaPokoleń = 5;
+            liczbaBaterii = 85;
+            prawdopodobieństwoMutacji = 0.1;
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+
+            nazwaPlikuWejściowego = "gr9882";
+            wielkośćPopulacji = 100;
+            liczbaPokoleń = 5;
+            liczbaBaterii = 22;
+            prawdopodobieństwoMutacji = 0.8;
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
             Console.ReadKey();
         }
