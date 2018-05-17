@@ -65,34 +65,34 @@ namespace TSP
             nazwaPlikuWejściowego = "gr9882";
             wielkośćPopulacji = 10;
             liczbaPokoleń = 5;
-            liczbaBaterii = 99;
-            prawdopodobieństwoMutacji = 0.5;
+            liczbaBaterii = 50;
+            //prawdopodobieństwoMutacji = 0.5;
             //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
             //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
             //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-            nazwaPlikuWejściowego = "gr9882";
             wielkośćPopulacji = 50;
+            populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
             liczbaPokoleń = 5;
-            liczbaBaterii = 99;
-            prawdopodobieństwoMutacji = 0.5;
+            liczbaBaterii = 50;
+            //prawdopodobieństwoMutacji = 0.5;
             //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
             //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
             //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-            nazwaPlikuWejściowego = "gr9882";
             wielkośćPopulacji = 100;
+            populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
             liczbaPokoleń = 5;
-            liczbaBaterii = 99;
+            liczbaBaterii = 50;
             prawdopodobieństwoMutacji = 0.5;
-            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
             AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-
-            nazwaPlikuWejściowego = "gr9882";
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            
             wielkośćPopulacji = 500;
+            populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
             liczbaPokoleń = 5;
-            liczbaBaterii = 99;
+            liczbaBaterii = 50;
             prawdopodobieństwoMutacji = 0.5;
             AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
             AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
@@ -100,7 +100,7 @@ namespace TSP
 
             Console.Clear();
             //testy dla OX i turnieju - zmiany liczby pokoleń
-            nazwaPlikuWejściowego = "gr9882";
+            populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
             wielkośćPopulacji = 100;
             liczbaPokoleń = 1;
             liczbaBaterii = 50;
@@ -108,8 +108,7 @@ namespace TSP
             AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
             AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
             AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-
-            nazwaPlikuWejściowego = "gr9882";
+            
             wielkośćPopulacji = 100;
             liczbaPokoleń = 10;
             liczbaBaterii = 50;
@@ -120,7 +119,6 @@ namespace TSP
 
             Console.Clear();
             //testy dla OX i turnieju - zmiany liczby baterii
-            nazwaPlikuWejściowego = "gr9882";
             wielkośćPopulacji = 100;
             liczbaPokoleń = 5;
             liczbaBaterii = 85;
@@ -168,30 +166,34 @@ namespace TSP
             //testy dla OX i turnieju - zmiany wielkości populacji - SZWECJA
             nazwaPlikuWejściowego = "sw24978";
             wielkośćPopulacji = 10;
+            populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
             liczbaPokoleń = 5;
             liczbaBaterii = 99;
             prawdopodobieństwoMutacji = 0.5;
-            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+
             wielkośćPopulacji = 50;
+            populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
             liczbaPokoleń = 5;
             liczbaBaterii = 99;
             prawdopodobieństwoMutacji = 0.5;
-            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+
             wielkośćPopulacji = 100;
+            populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
             liczbaPokoleń = 5;
             liczbaBaterii = 99;
             prawdopodobieństwoMutacji = 0.5;
-            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
             AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
             
             wielkośćPopulacji = 500;
+            populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
             liczbaPokoleń = 5;
             liczbaBaterii = 99;
             prawdopodobieństwoMutacji = 0.5;
@@ -202,6 +204,7 @@ namespace TSP
             Console.Clear();
             //testy dla OX i turnieju - zmiany liczby pokoleń
             wielkośćPopulacji = 100;
+            populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
             liczbaPokoleń = 1;
             liczbaBaterii = 50;
             prawdopodobieństwoMutacji = 0.5;

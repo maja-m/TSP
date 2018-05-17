@@ -44,11 +44,13 @@ namespace TSP
             using (System.IO.StreamWriter zapisator =
             new System.IO.StreamWriter(@"../../Wyniki/" + nazwaPlikuWejściowego + "-" + wielkośćPopulacji + "-" + liczbaPokoleń + "-" + krzyżowanie + "-" + liczbaBaterii + "-" + prawdopodobieństwoMutacji + "-" + selekcja + "-" + DateTime.Now.ToString().Replace(':', '-') + ".txt"))
             {
+                zapisator.WriteLine("\nSzybkość trasy: " + Program.niebo.SzybkośćTrasy());
+                zapisator.WriteLine();
+
                 for (int i = 0; i < Program.niebo.genotyp.Count; i++)
                     zapisator.Write(Osobnik.listaMiast[Program.niebo.genotyp[i]].indeks + " ");
                 zapisator.WriteLine();
-                zapisator.WriteLine("\nSzybkość trasy: " + Program.niebo.SzybkośćTrasy());
-                zapisator.WriteLine();
+                
             }
         }
     }
