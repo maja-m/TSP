@@ -39,7 +39,7 @@ namespace TSP
 
             Program.niebo = Osobnik.PorównajOsobników(dziecko, Program.niebo);
 
-            //Console.WriteLine("\nSzybkość trasy nieba: " + Program.niebo.SzybkośćTrasy());
+            Console.WriteLine("\nSzybkość trasy nieba: " + Program.niebo.SzybkośćTrasy());
 
             return dziecko;
         }
