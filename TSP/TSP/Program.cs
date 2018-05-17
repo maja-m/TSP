@@ -9,8 +9,14 @@ namespace TSP
     class Program
     {
         public static Random random = new Random();
+
+        public static string nazwaPlikuWejściowego = ConfigurationManager.AppSettings["nazwaPlikuWejściowego"] ?? "gr9882";
         public static int wielkośćPopulacji = int.Parse(ConfigurationManager.AppSettings["wielkośćPopulacji"] ?? "100");
         public static int liczbaPokoleń = int.Parse(ConfigurationManager.AppSettings["liczbaPokoleń"] ?? "100");
+        public static string krzyżowanie = ConfigurationManager.AppSettings["krzyżowanie"] ?? "OX";
+        public static string selekcja = ConfigurationManager.AppSettings["selekcja"] ?? "turniejowa";
+        public static double prawdopodobieństwoMutacji = double.Parse(ConfigurationManager.AppSettings["prawdopodobieństwoMutacji"] ?? "0.5");
+        
         public static Osobnik niebo;
 
         static Osobnik[] StwórzPopulacjęZPliku(string ścieżka)
@@ -38,6 +44,8 @@ namespace TSP
             Osobnik[] populacja = new Osobnik[wielkośćPopulacji];
             populacja[0] = osobnik;
 
+            Console.WriteLine("Test: " + osobnik.SzybkośćTrasy());
+
             for (int i = 1; i < wielkośćPopulacji; i++)
                 populacja[i] = osobnik.WymieszajOsobnika();
 
@@ -46,7 +54,7 @@ namespace TSP
 
         static void Main(string[] args)
         {
-            Osobnik[] populacja = StwórzPopulacjęZPliku("../../sw24978.tsp");
+            Osobnik[] populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
 
             //algorytm zachłanny
             //Osobnik nieboZZachłannego = AlgorytmZachłanny.Algorytm(populacja[0]);
@@ -99,7 +107,8 @@ namespace TSP
             Console.WriteLine("\nSzybkość trasy: " + niebo.SzybkośćTrasy());
 
             using (System.IO.StreamWriter plik =
-            new System.IO.StreamWriter(@"../../Wyniki/sw24978.txt"))         ///rename file-------------------------------------------
+            //new System.IO.StreamWriter(@"../../Wyniki/gr9882.txt"))         ///rename file-------------------------------------------
+            new System.IO.StreamWriter(@"../../Wyniki/" + nazwaPlikuWejściowego + "-" + wielkośćPopulacji + "-" + liczbaPokoleń + "-" + krzyżowanie + "-" + selekcja + "-" + prawdopodobieństwoMutacji + ".txt"))         ///rename file-------------------------------------------
             {
                 for (int i = 0; i < niebo.genotyp.Count; i++)
                     plik.Write(Osobnik.listaMiast[niebo.genotyp[i]].indeks + " ");

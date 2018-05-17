@@ -83,7 +83,7 @@ namespace TSP
             double sOdcinkaDoBaterii;
             double vOdcinka;
             double v0;
-            int liczbaBaterii = 99;                          //------------------------------------------------------------liczba baterii
+            int liczbaBaterii = 85;                          //------------------------------------------------------------liczba baterii
 
             List<double> baterie = new List<double>(); ;      
             for (int i = 0; i < liczbaBaterii; i++)

@@ -6,7 +6,6 @@ namespace TSP
 {
     class Krzyżowanie
     {
-        public static double prawdopodobieństwoMutacji = 0.5;//-------------------------------------------------------------prawdop. z pliku
         public Krzyżowanie ()
         {
             //----------------------------------------------------------------------------------------------------------------------
@@ -35,7 +34,7 @@ namespace TSP
                     dziecko.genotyp.Add(mama.genotyp[i]);
             }
 
-            if (Program.random.NextDouble() < prawdopodobieństwoMutacji)
+            if (Program.random.NextDouble() < Program.prawdopodobieństwoMutacji)
                 dziecko = dziecko.Mutacja();
 
             Program.niebo = Osobnik.PorównajOsobników(dziecko, Program.niebo);
