@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.Configuration;
 
 namespace TSP
 {
     class Program
     {
         public static Random random = new Random();
-        public static int wielkośćPopulacji = 100;// int.Parse(ConfigurationManager.AppSettings["wielkośćPopulacji"] ?? "100");
-        public static int liczbaPokoleń = 100;// int.Parse(ConfigurationManager.AppSettings["liczbaPokoleń"] ?? "100");
+        public static int wielkośćPopulacji = int.Parse(ConfigurationManager.AppSettings["wielkośćPopulacji"] ?? "100");
+        public static int liczbaPokoleń = int.Parse(ConfigurationManager.AppSettings["liczbaPokoleń"] ?? "100");
         public static Osobnik niebo;
 
         static Osobnik[] StwórzPopulacjęZPliku(string ścieżka)
@@ -45,7 +46,7 @@ namespace TSP
 
         static void Main(string[] args)
         {
-            Osobnik[] populacja = StwórzPopulacjęZPliku("../../gr9882.tsp");
+            Osobnik[] populacja = StwórzPopulacjęZPliku("../../sw24978.tsp");
 
             //algorytm zachłanny
             //Osobnik nieboZZachłannego = AlgorytmZachłanny.Algorytm(populacja[0]);
@@ -98,7 +99,7 @@ namespace TSP
             Console.WriteLine("\nSzybkość trasy: " + niebo.SzybkośćTrasy());
 
             using (System.IO.StreamWriter plik =
-            new System.IO.StreamWriter(@"../../Wyniki/gr9882.txt"))         ///rename file-------------------------------------------
+            new System.IO.StreamWriter(@"../../Wyniki/sw24978.txt"))         ///rename file-------------------------------------------
             {
                 for (int i = 0; i < niebo.genotyp.Count; i++)
                     plik.Write(Osobnik.listaMiast[niebo.genotyp[i]].indeks + " ");
