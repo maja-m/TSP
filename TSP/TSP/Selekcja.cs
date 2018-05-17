@@ -20,19 +20,24 @@ namespace TSP
             return Osobnik.PorównajOsobników(osobnik1, osobnik2);
         }
 
-        //static Osobnik SelekcjaRuletkaWartościowa(Osobnik[] populacja)
-        //{
-        //    //----------------------------------------------------------------------------------------------------------------------
-        //    double[] punktyOsobników = new double[populacja.Length];
+        static Osobnik SelekcjaRuletkaWartościowa(Osobnik[] populacja)
+        {
+            //----------------------------------------------------------------------------------------------------------------------
+            double[] punktyOsobników = new double[populacja.Length];
 
-        //    for (int i = 0; i < populacja.Length; i++)
-        //        punktyOsobników[i] = 1 / populacja[i].SzybkośćTrasy();
+            for (int i = 0; i < populacja.Length; i++)
+                punktyOsobników[i] = 1 / populacja[i].SzybkośćTrasy();
 
-        //    double sumaPunktów = 0;
-        //    for (int i = 0; i < punktyOsobników.Length; i++)
-        //        sumaPunktów += punktyOsobników[i];
+            double sumaPunktów = 0;
+            for (int i = 0; i < punktyOsobników.Length; i++)
+                sumaPunktów += punktyOsobników[i];
 
 
-        //}
+
+
+
+
+            return populacja[0];
+        }
     }
 }

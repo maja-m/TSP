@@ -12,11 +12,12 @@ namespace TSP
 
         public static string nazwaPlikuWejściowego = ConfigurationManager.AppSettings["nazwaPlikuWejściowego"] ?? "gr9882";
         public static int wielkośćPopulacji = int.Parse(ConfigurationManager.AppSettings["wielkośćPopulacji"] ?? "100");
-        public static int liczbaPokoleń = int.Parse(ConfigurationManager.AppSettings["liczbaPokoleń"] ?? "100");
+        public static int liczbaPokoleń = int.Parse(ConfigurationManager.AppSettings["liczbaPokoleń"] ?? "1");
         public static string krzyżowanie = ConfigurationManager.AppSettings["krzyżowanie"] ?? "OX";
+        public static int liczbaBaterii = int.Parse(ConfigurationManager.AppSettings["liczbaBaterii"] ?? "85");
         public static string selekcja = ConfigurationManager.AppSettings["selekcja"] ?? "turniejowa";
         public static double prawdopodobieństwoMutacji = double.Parse(ConfigurationManager.AppSettings["prawdopodobieństwoMutacji"] ?? "0.5");
-        
+
         public static Osobnik niebo;
 
         static Osobnik[] StwórzPopulacjęZPliku(string ścieżka)
@@ -44,8 +45,6 @@ namespace TSP
             Osobnik[] populacja = new Osobnik[wielkośćPopulacji];
             populacja[0] = osobnik;
 
-            Console.WriteLine("Test: " + osobnik.SzybkośćTrasy());
-
             for (int i = 1; i < wielkośćPopulacji; i++)
                 populacja[i] = osobnik.WymieszajOsobnika();
 
@@ -60,7 +59,7 @@ namespace TSP
             //Osobnik nieboZZachłannego = AlgorytmZachłanny.Algorytm(populacja[0]);
 
             //using (System.IO.StreamWriter plik =
-            //new System.IO.StreamWriter(@"../../Wyniki/Zgr9882.txt"))         ///rename file-------------------------------------------
+            //new System.IO.StreamWriter(@"../../Wyniki/Z" + nazwaPlikuWejściowego + "-" + wielkośćPopulacji + "-" + czasObliczeń + "-" + krzyżowanie + "-" + liczbaBaterii + "-" + prawdopodobieństwoMutacji + "-" + selekcja + "-" + DateTime.Now.ToString().Replace(':', '-') + ".txt")))
             //{
             //    for (int i = 0; i < nieboZZachłannego.genotyp.Count; i++)
             //        plik.Write(Osobnik.listaMiast[nieboZZachłannego.genotyp[i]].indeks + " ");
@@ -71,10 +70,10 @@ namespace TSP
             //}
 
             //algorytm ewolucyjny
-            //for (int i = 0; i < liczbaPokoleń; i++)
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            while (stopwatch.ElapsedMilliseconds <= 1000 * 10)
+            for (int i = 0; i < liczbaPokoleń; i++)
+            //Stopwatch stoper = new Stopwatch();
+            //stoper.Start();
+            //while (stoper.ElapsedMilliseconds <= czasObliczeń)
             {
                 Osobnik[] nowaPopulacja = new Osobnik[wielkośćPopulacji];
 
@@ -83,10 +82,6 @@ namespace TSP
                     Osobnik tata = Selekcja.SelekcjaTurniejowa(populacja);
                     Osobnik mama = Selekcja.SelekcjaTurniejowa(populacja);
                     Osobnik dziecko = Krzyżowanie.KrzyżowanieOX(tata, mama);
-
-                    //Console.WriteLine(tata.SzybkośćTrasy());
-                    //Console.WriteLine(mama.SzybkośćTrasy());
-                    //Console.WriteLine(dziecko.SzybkośćTrasy());
 
                     //konkurencja między rodzicami i dzieckiem
                     if (tata.DługośćTrasy < mama.DługośćTrasy)
@@ -99,22 +94,21 @@ namespace TSP
                 }
                 populacja = nowaPopulacja;
             }
-            stopwatch.Stop();
+            //stoper.Stop();
 
             Console.WriteLine("Znaleziona ścieżka: ");
             for (int i = 0; i < niebo.genotyp.Count; i++)
                 Console.Write(Osobnik.listaMiast[niebo.genotyp[i]].indeks + " ");
             Console.WriteLine("\nSzybkość trasy: " + niebo.SzybkośćTrasy());
 
-            using (System.IO.StreamWriter plik =
-            //new System.IO.StreamWriter(@"../../Wyniki/gr9882.txt"))         ///rename file-------------------------------------------
-            new System.IO.StreamWriter(@"../../Wyniki/" + nazwaPlikuWejściowego + "-" + wielkośćPopulacji + "-" + liczbaPokoleń + "-" + krzyżowanie + "-" + selekcja + "-" + prawdopodobieństwoMutacji + ".txt"))         ///rename file-------------------------------------------
+            using (System.IO.StreamWriter zapisator =
+            new System.IO.StreamWriter(@"../../Wyniki/" + nazwaPlikuWejściowego + "-" + wielkośćPopulacji + "-" + liczbaPokoleń + "-" + krzyżowanie + "-" + liczbaBaterii + "-" + prawdopodobieństwoMutacji + "-" + selekcja + "-" + DateTime.Now.ToString().Replace(':', '-') + ".txt"))
             {
                 for (int i = 0; i < niebo.genotyp.Count; i++)
-                    plik.Write(Osobnik.listaMiast[niebo.genotyp[i]].indeks + " ");
-                plik.WriteLine();
-                plik.WriteLine("\nSzybkość trasy: " + niebo.SzybkośćTrasy());
-                plik.WriteLine();
+                    zapisator.Write(Osobnik.listaMiast[niebo.genotyp[i]].indeks + " ");
+                zapisator.WriteLine();
+                zapisator.WriteLine("\nSzybkość trasy: " + niebo.SzybkośćTrasy());
+                zapisator.WriteLine();
             }
 
             Console.ReadKey();

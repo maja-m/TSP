@@ -17,7 +17,7 @@ namespace TSP
             genotyp = new List<int>();
         }
 
-        public static Osobnik PorównajOsobników(Osobnik osobnik1, Osobnik osobnik2)             //-----------------------todo sprawdzaj czy osobnik się nadaje (t != 0)
+        public static Osobnik PorównajOsobników(Osobnik osobnik1, Osobnik osobnik2)
         {
             if (osobnik1.SzybkośćTrasy() < osobnik2.SzybkośćTrasy())
             {
@@ -74,18 +74,17 @@ namespace TSP
             return this;
         }
 
-        public double SzybkośćTrasy()                                      //-----------------------------------------------BATERIE
+        public double SzybkośćTrasy()
         {
             double t = 0;
             double tOdcinka;
-            double s = DługośćTrasy;
             double sOdcinka;
             double sOdcinkaDoBaterii;
             double vOdcinka;
             double v0;
-            int liczbaBaterii = 85;                          //------------------------------------------------------------liczba baterii
+            int liczbaBaterii = Program.liczbaBaterii;
 
-            List<double> baterie = new List<double>(); ;      
+            List<double> baterie = new List<double>();   
             for (int i = 0; i < liczbaBaterii; i++)
                 baterie.Add(1000);
             
@@ -102,8 +101,8 @@ namespace TSP
 
                     if (baterie[baterie.Count - 1] < sOdcinkaDoBaterii)
                     {
+                        sOdcinkaDoBaterii -= baterie[baterie.Count - 1];
                         baterie.RemoveAt(baterie.Count - 1);
-                        sOdcinkaDoBaterii -= 1000;
                     }
                     else
                     {
@@ -124,7 +123,7 @@ namespace TSP
 
                 //jeśli po dojechaniu nie mamy baterii i nie naładowaliśmy, musimy przerwać jazdę (trasa nie spełnia warunków)
                 if (baterie.Count == 0 || baterie[0] == 0)
-                    return 0;                                                                                                       //błędna trasa zwraca 0
+                    return 0;                                        //błędna trasa zwraca 0
 
                 v0 = 10 - (listaMiast[genotyp[i + 1]].z - listaMiast[genotyp[i]].z);
                 vOdcinka = v0 * (1 - 0.01 * baterie.Count);
@@ -134,10 +133,5 @@ namespace TSP
 
             return t;
         }
-
-        //public double SzybkośćOdcinkaTrasy()
-        //{
-
-        //}
     }
 }
