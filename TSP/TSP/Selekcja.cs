@@ -36,7 +36,21 @@ namespace TSP
 
             //najkrótsza trasa dostaje najwięcej punktów (odwrotność szybkości trasy)
             for (int i = 0; i < populacja.Length; i++)
-                punktyOsobników[i] = (int)Math.Floor(1 / populacja[i].SzybkośćTrasy() * 1000000000);
+            {
+                double szybkość = populacja[i].SzybkośćTrasy();
+
+                if (szybkość == 0)
+                {
+                    punktyOsobników[i] = 0;
+                    break;
+                }
+                    
+                double ułamek = 1 / szybkość;
+                double mnoż = ułamek * 1000000000;
+                int floor = Convert.ToInt32(Math.Floor(mnoż));
+
+                punktyOsobników[i] = Convert.ToInt32(Math.Floor(1 / szybkość * 1000000000));
+            }
                 
 
             int sumaPunktów = 0;
@@ -51,7 +65,6 @@ namespace TSP
                 if (wylosowanyOsobnik <= 0)
                     return populacja[i];
             }
-
             return populacja[Program.random.Next(Program.wielkośćPopulacji)];
         }
     }
