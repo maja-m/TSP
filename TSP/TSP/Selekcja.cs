@@ -6,10 +6,19 @@ namespace TSP
 {
     class Selekcja
     {
-        public Selekcja()
+        public static Osobnik Selekcjonuj(string typ, Osobnik[] populacja)
         {
             //----------------------------------------------------------------------------------------------------------------------
             //sprawdzanie która selekcja z pliku konfiguracyjnego, wielkość populacji też
+            if (typ == "turniejowa")
+                return SelekcjaTurniejowa(populacja);
+            else if (typ == "ruletkaWartościowa")
+                return SelekcjaRuletkaWartościowa(populacja);
+            else
+            {
+                Console.WriteLine("Podano błędny typ selekcji.");
+                return null;
+            }
         }
 
         public static Osobnik SelekcjaTurniejowa(Osobnik[] populacja)
@@ -20,24 +29,30 @@ namespace TSP
             return Osobnik.PorównajOsobników(osobnik1, osobnik2);
         }
 
-        static Osobnik SelekcjaRuletkaWartościowa(Osobnik[] populacja)
+        public static Osobnik SelekcjaRuletkaWartościowa(Osobnik[] populacja)
         {
             //----------------------------------------------------------------------------------------------------------------------
-            double[] punktyOsobników = new double[populacja.Length];
+            int[] punktyOsobników = new int[populacja.Length];
 
+            //najkrótsza trasa dostaje najwięcej punktów (odwrotność szybkości trasy)
             for (int i = 0; i < populacja.Length; i++)
-                punktyOsobników[i] = 1 / populacja[i].SzybkośćTrasy();
+                punktyOsobników[i] = (int)Math.Floor(1 / populacja[i].SzybkośćTrasy() * 1000000000);
+                
 
-            double sumaPunktów = 0;
+            int sumaPunktów = 0;
             for (int i = 0; i < punktyOsobników.Length; i++)
                 sumaPunktów += punktyOsobników[i];
 
+            int wylosowanyOsobnik = Program.random.Next(sumaPunktów);
 
+            for (int i = 0; i < populacja.Length; i++)
+            {
+                wylosowanyOsobnik -= punktyOsobników[i];
+                if (wylosowanyOsobnik <= 0)
+                    return populacja[i];
+            }
 
-
-
-
-            return populacja[0];
+            return populacja[Program.random.Next(Program.wielkośćPopulacji)];
         }
     }
 }

@@ -19,8 +19,8 @@ namespace TSP
 
                 for (int j = 0; j < wielkośćPopulacji; j++)
                 {
-                    Osobnik tata = Selekcja.SelekcjaTurniejowa(populacja);
-                    Osobnik mama = Selekcja.SelekcjaTurniejowa(populacja);
+                    Osobnik tata = Selekcja.Selekcjonuj(Program.selekcja, populacja);
+                    Osobnik mama = Selekcja.Selekcjonuj(Program.selekcja, populacja);
                     Osobnik dziecko = Krzyżowanie.KrzyżowanieOX(tata, mama);
 
                     //konkurencja między rodzicami i dzieckiem
