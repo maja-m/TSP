@@ -44,17 +44,17 @@ namespace TSP
             return dziecko;
         }
 
-        public Osobnik KrzyżowaniePrzezWymianęPodtras(Osobnik tata, Osobnik mama)
-        {
-            //----------------------------------------------------------------------------------------------------------------------
-            int[] tataGenotypŚcieżkowy = ZmianaReprezentacjiNaŚcieżkową(tata);
-            int[] mamaGenotypŚcieżkowy = ZmianaReprezentacjiNaŚcieżkową(mama);
+        //public Osobnik KrzyżowaniePrzezWymianęPodtras(Osobnik tata, Osobnik mama)
+        //{
+        //    //----------------------------------------------------------------------------------------------------------------------
+        //    int[] tataGenotypŚcieżkowy = ZmianaReprezentacjiNaŚcieżkową(tata);
+        //    int[] mamaGenotypŚcieżkowy = ZmianaReprezentacjiNaŚcieżkową(mama);
 
-            int[] dzieckoGenotypŚcieżkowy = new int[tataGenotypŚcieżkowy.Length];
+        //    int[] dzieckoGenotypŚcieżkowy = new int[tataGenotypŚcieżkowy.Length];
 
-            //zmienić 
+        //    //zmienić 
 
-        }
+        //}
 
         public static Dictionary<int, int> ZmianaReprezentacjiNaŚcieżkową(Osobnik osobnik)
         {
