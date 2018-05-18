@@ -31,6 +31,7 @@ namespace TSP
 
         public static Osobnik SelekcjaRuletkaWartościowa(Osobnik[] populacja)
         {
+            Console.WriteLine("jestem");
             //----------------------------------------------------------------------------------------------------------------------
             int[] punktyOsobników = new int[populacja.Length];
 

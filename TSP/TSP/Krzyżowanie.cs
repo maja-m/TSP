@@ -44,10 +44,43 @@ namespace TSP
             return dziecko;
         }
 
-        //public Osobnik KrzyżowaniePrzezWymianęPodtras(Osobnik tata, Osobnik mama)
-        //{
-        //    //----------------------------------------------------------------------------------------------------------------------
-        //}
+        public Osobnik KrzyżowaniePrzezWymianęPodtras(Osobnik tata, Osobnik mama)
+        {
+            //----------------------------------------------------------------------------------------------------------------------
+            int[] tataGenotypŚcieżkowy = ZmianaReprezentacjiNaŚcieżkową(tata);
+            int[] mamaGenotypŚcieżkowy = ZmianaReprezentacjiNaŚcieżkową(mama);
 
+            int[] dzieckoGenotypŚcieżkowy = new int[tataGenotypŚcieżkowy.Length];
+
+            //zmienić 
+
+        }
+
+        public static Dictionary<int, int> ZmianaReprezentacjiNaŚcieżkową(Osobnik osobnik)
+        {
+            Dictionary<int, int> ścieżka = new Dictionary<int, int>(osobnik.genotyp.Count);
+
+
+
+
+
+            //int[] ścieżka = new int[osobnik.genotyp.Count];
+            bool flaga = false;
+
+            for (int i = 0; i < osobnik.genotyp.Count; i++)
+            {
+                if (flaga == true)
+                    ścieżka[osobnik.genotyp[i]] = osobnik.genotyp[0];
+                else
+                {
+                    if (i == osobnik.genotyp.Count - 2)
+                        flaga = true;
+
+                    ścieżka[osobnik.genotyp[i]] = osobnik.genotyp[i + 1];
+                }
+            }
+
+            return ścieżka;
+        }
     }
 }
