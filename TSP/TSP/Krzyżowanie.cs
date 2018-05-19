@@ -6,10 +6,17 @@ namespace TSP
 {
     class Krzyżowanie
     {
-        public Krzyżowanie ()
+        public static Osobnik Krzyżuj(string typ, Osobnik tata, Osobnik mama)
         {
-            //----------------------------------------------------------------------------------------------------------------------
-            //sprawdzanie które krzyżowaine z pliku konfiguracyjnego
+            if (typ == "OX")
+                return KrzyżowanieOX(tata, mama);
+            else if (typ == "przezWymianęPodtras")
+                return KrzyżowaniePrzezWymianęPodtras(tata, mama);
+            else
+            {
+                Console.WriteLine("Podano błędny typ krzyżowania.");
+                return null;
+            }
         }
 
         public static Osobnik KrzyżowanieOX(Osobnik tata, Osobnik mama)
@@ -39,21 +46,18 @@ namespace TSP
 
             Program.niebo = Osobnik.PorównajOsobników(dziecko, Program.niebo);
 
-            //Console.WriteLine("\nSzybkość trasy nieba: " + Program.niebo.SzybkośćTrasy());
-
             return dziecko;
         }
 
         public static Osobnik KrzyżowaniePrzezWymianęPodtras(Osobnik tata, Osobnik mama)
         {
-            //----------------------------------------------------------------------------------------------------------------------
             SortedList<int, int> tataGenotypŚcieżkowy = ZmianaReprezentacjiNaŚcieżkową(tata);
             SortedList<int, int> mamaGenotypŚcieżkowy = ZmianaReprezentacjiNaŚcieżkową(mama);
 
             SortedList<int, int> dzieckoGenotypŚcieżkowy = new SortedList<int, int>();
 
             int przejścia = tataGenotypŚcieżkowy.Count;
-            int długość = Program.random.Next(1, 3); //------------------zmienić na długość osobnika
+            int długość = Program.random.Next(1, przejścia);
             bool flag = true;       //true - tata, flase - mama
 
             for (int i = 0; i < przejścia; i++)
@@ -62,31 +66,22 @@ namespace TSP
                 if (długość == 0)
                 {
                     flag = !flag;
-                    długość = Program.random.Next(1, 3);                               //------------------zmienić na długość osobnika
+                    długość = Program.random.Next(1, przejścia);
                 }
 
                 if (flag) //tata
                 {
                     if (!dzieckoGenotypŚcieżkowy.ContainsValue(tataGenotypŚcieżkowy[i]))
-                    {
                         dzieckoGenotypŚcieżkowy.Add(i, tataGenotypŚcieżkowy[i]);
-                    }
                     else if (!dzieckoGenotypŚcieżkowy.ContainsValue(mamaGenotypŚcieżkowy[i]))
-                    {
                         dzieckoGenotypŚcieżkowy.Add(i, mamaGenotypŚcieżkowy[i]);
-                    }
                 }
                 else   //mama
                 {
                     if (!dzieckoGenotypŚcieżkowy.ContainsValue(mamaGenotypŚcieżkowy[i]))
-                    {
                         dzieckoGenotypŚcieżkowy.Add(i, mamaGenotypŚcieżkowy[i]);
-                    }
                     else if (!dzieckoGenotypŚcieżkowy.ContainsValue(tataGenotypŚcieżkowy[i]))
-                    {
                         dzieckoGenotypŚcieżkowy.Add(i, tataGenotypŚcieżkowy[i]);
-                    }
-
                 }
             }
 
@@ -107,8 +102,8 @@ namespace TSP
                     }
                 }
             }
-            Console.WriteLine();
-            return null;
+            
+            return ZmianaReprezentacjiNaPorządkową(dzieckoGenotypŚcieżkowy);
         }
 
         public static SortedList<int, int> ZmianaReprezentacjiNaŚcieżkową(Osobnik osobnik)
@@ -119,25 +114,27 @@ namespace TSP
                 ścieżka.Add(osobnik.genotyp[i], osobnik.genotyp[i + 1]);
 
             ścieżka.Add(osobnik.genotyp[osobnik.genotyp.Count - 1], osobnik.genotyp[0]);
-            
-
-            ////int[] ścieżka = new int[osobnik.genotyp.Count];
-            //bool flaga = false;
-
-            //for (int i = 0; i < osobnik.genotyp.Count; i++)
-            //{
-            //    if (flaga == true)
-            //        ścieżka[osobnik.genotyp[i]] = osobnik.genotyp[0];
-            //    else
-            //    {
-            //        if (i == osobnik.genotyp.Count - 2)
-            //            flaga = true;
-
-            //        ścieżka[osobnik.genotyp[i]] = osobnik.genotyp[i + 1];
-            //    }
-            //}
 
             return ścieżka;
+        }
+
+        public static Osobnik ZmianaReprezentacjiNaPorządkową(SortedList<int, int> ścieżka)
+        {
+            Osobnik osobnik = new Osobnik();
+            int indeks = 0;
+            int element = 0;
+            osobnik.genotyp.Add(ścieżka.Keys[indeks]);
+            
+            for (int i = 0; i < ścieżka.Count; i++)
+            {
+                element = ścieżka.Values[indeks];
+                osobnik.genotyp.Add(element);
+                indeks = ścieżka.IndexOfKey(element);
+            }
+
+            osobnik.genotyp.RemoveAt(osobnik.genotyp.Count - 1);
+
+            return osobnik;
         }
     }
 }

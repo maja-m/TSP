@@ -8,8 +8,6 @@ namespace TSP
     {
         public static Osobnik Selekcjonuj(string typ, Osobnik[] populacja)
         {
-            //----------------------------------------------------------------------------------------------------------------------
-            //sprawdzanie która selekcja z pliku konfiguracyjnego, wielkość populacji też
             if (typ == "turniejowa")
                 return SelekcjaTurniejowa(populacja);
             else if (typ == "ruletkaWartościowa")
@@ -32,7 +30,6 @@ namespace TSP
         public static Osobnik SelekcjaRuletkaWartościowa(Osobnik[] populacja)
         {
             Console.WriteLine("jestem");
-            //----------------------------------------------------------------------------------------------------------------------
             int[] punktyOsobników = new int[populacja.Length];
 
             //najkrótsza trasa dostaje najwięcej punktów (odwrotność szybkości trasy)
