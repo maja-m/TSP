@@ -49,7 +49,6 @@ namespace TSP
                 punktyOsobników[i] = Convert.ToInt32(Math.Floor(1 / szybkość * 1000000000));
             }
                 
-
             int sumaPunktów = 0;
             for (int i = 0; i < punktyOsobników.Length; i++)
                 sumaPunktów += punktyOsobników[i];

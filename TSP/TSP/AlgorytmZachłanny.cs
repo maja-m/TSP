@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace TSP
@@ -8,47 +9,49 @@ namespace TSP
     {
         public static Osobnik Oblicz(Osobnik trasa)
         {
-            Osobnik wynik = new Osobnik();
-            int pierwszeMiasto = trasa.genotyp[0];
-            wynik.genotyp.Add(pierwszeMiasto);
-            int najbliższeMiasto;
-            double odległość = 0; 
-            int liczbaMiast = trasa.genotyp.Count;
-            trasa.genotyp.Remove(pierwszeMiasto);
+            int czasObliczeń = 1000 * 60 * 1;  //1 minuta
 
-            for (int j = 1; j < liczbaMiast; j++)
+            Stopwatch stoper = new Stopwatch();
+            stoper.Start();
+            while (stoper.ElapsedMilliseconds <= czasObliczeń)
             {
-                najbliższeMiasto = trasa.genotyp[0];
-                odległość = trasa.OdległośćMiędzyOSobnikami(pierwszeMiasto, najbliższeMiasto);
-                
-                for (int i = 0; i < trasa.genotyp.Count; i++)
-                {
-                    if (pierwszeMiasto != trasa.genotyp[i])
-                    {
-                        if (trasa.OdległośćMiędzyOSobnikami(pierwszeMiasto, trasa.genotyp[i]) < odległość)
-                        {
-                            najbliższeMiasto = trasa.genotyp[i];
-                        }
-                    }
+                Osobnik sąsiad = new Osobnik();
+                sąsiad.genotyp = trasa.genotyp.GetRange(0, trasa.genotyp.Count);
 
+                int punkt1 = Program.random.Next(trasa.genotyp.Count);
+                int punkt2 = Program.random.Next(trasa.genotyp.Count);
+                int temp;
+
+                temp = sąsiad.genotyp[punkt1];
+                sąsiad.genotyp[punkt1] = sąsiad.genotyp[punkt2];
+                sąsiad.genotyp[punkt2] = temp;
+
+                if (sąsiad.SzybkośćTrasy() != 0 && sąsiad.SzybkośćTrasy() < trasa.SzybkośćTrasy())
+                {
+                    trasa = sąsiad;
+                    //Console.WriteLine(trasa.SzybkośćTrasy());
                 }
-                wynik.genotyp.Add(najbliższeMiasto);
-                trasa.genotyp.Remove(najbliższeMiasto);
-                pierwszeMiasto = najbliższeMiasto;
             }
 
-            //using (System.IO.StreamWriter plik =
-            //new System.IO.StreamWriter(@"../../Wyniki/Z" + nazwaPlikuWejściowego + "-" + wielkośćPopulacji + "-" + czasObliczeń + "-" + krzyżowanie + "-" + liczbaBaterii + "-" + prawdopodobieństwoMutacji + "-" + selekcja + "-" + DateTime.Now.ToString().Replace(':', '-') + ".txt")))
-            //{
-            //    for (int i = 0; i < nieboZZachłannego.genotyp.Count; i++)
-            //        plik.Write(Osobnik.listaMiast[nieboZZachłannego.genotyp[i]].indeks + " ");
-            //    plik.WriteLine();
-            //    plik.WriteLine("\nDługość trasy: " + nieboZZachłannego.DługośćTrasy);
-            //    plik.WriteLine();
-            //    plik.Close();
-            //}
+            stoper.Stop();
 
-            return wynik;
+            Console.WriteLine("Znaleziona ścieżka: ");
+            for (int i = 0; i < trasa.genotyp.Count; i++)
+                Console.Write(Osobnik.listaMiast[trasa.genotyp[i]].indeks + " ");
+            Console.WriteLine("\nSzybkość trasy: " + trasa.SzybkośćTrasy());
+
+            using (System.IO.StreamWriter zapisator =
+            new System.IO.StreamWriter(@"../../Wyniki/Z" + Program.nazwaPlikuWejściowego + "-" + Program.liczbaBaterii + "-" + DateTime.Now.ToString().Replace(':', '-') + ".txt"))
+            {
+                zapisator.WriteLine("\nSzybkość trasy: " + trasa.SzybkośćTrasy());
+                zapisator.WriteLine();
+
+                for (int i = 0; i < trasa.genotyp.Count; i++)
+                    zapisator.Write(Osobnik.listaMiast[trasa.genotyp[i]].indeks + " ");
+                zapisator.WriteLine();
+            }
+
+            return trasa;
         }
     }
 }

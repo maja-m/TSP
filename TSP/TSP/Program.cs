@@ -69,33 +69,99 @@ namespace TSP
 
             AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-            return;
-
-            //Osobnik o = populacja[0];
-            ////o.genotyp = new List<int> { 2, 1, 0, 3, 4 };
-            //Osobnik p = populacja[1];
-            ////p.genotyp = new List<int> { 3, 2, 1, 4, 0 };
-            //Osobnik d = Krzyżowanie.KrzyżowaniePrzezWymianęPodtras(o, p);
-            ////SortedList<int, int> oś = Krzyżowanie.ZmianaReprezentacjiNaŚcieżkową(o);
-            ////p = Krzyżowanie.ZmianaReprezentacjiNaPorządkową(oś);
-            ////for (int i = 0; i < oś.Count; i++)
-            ////{
-            //Console.WriteLine(o);
-            ////}
-
-
 
 
             //algorytm zachłanny
-            //Osobnik nieboZZachłannego = AlgorytmZachłanny.Algorytm(populacja[0]);
+            ////GRECJA, zmiany liczby baterii
+            //nazwaPlikuWejściowego = "gr9882";
+            //liczbaBaterii = 85;
+            //for (int j = 0; j < 3; j++)
+            //{
+            //    for (int i = 0; i < populacja.Length; i++)
+            //    {
+            //        if (populacja[i].SzybkośćTrasy() != 0)
+            //        {
+            //            AlgorytmZachłanny.Oblicz(populacja[i]);
+            //            break;
+            //        }
+            //    }
+            //}
+
+            //liczbaBaterii = 50;
+            //for (int j = 0; j < 3; j++)
+            //{
+            //    for (int i = 0; i < populacja.Length; i++)
+            //    {
+            //        if (populacja[i].SzybkośćTrasy() != 0)
+            //        {
+            //            AlgorytmZachłanny.Oblicz(populacja[i]);
+            //            break;
+            //        }
+            //    }
+            //}
+
+            //liczbaBaterii = 22;
+            //for (int j = 0; j < 3; j++)
+            //{
+            //    for (int i = 0; i < populacja.Length; i++)
+            //    {
+            //        if (populacja[i].SzybkośćTrasy() != 0)
+            //        {
+            //            AlgorytmZachłanny.Oblicz(populacja[i]);
+            //            break;
+            //        }
+            //    }
+            //}
+
+            ////SZWECJA, zmiany liczby baterii
+            //nazwaPlikuWejściowego = "sw24978";
+            //liczbaBaterii = 21;
+            //for (int j = 0; j < 3; j++)
+            //{
+            //    for (int i = 0; i < populacja.Length; i++)
+            //    {
+            //        if (populacja[i].SzybkośćTrasy() != 0)
+            //        {
+            //            AlgorytmZachłanny.Oblicz(populacja[i]);
+            //            break;
+            //        }
+            //    }
+            //}
+
+            //liczbaBaterii = 50;
+            //for (int j = 0; j < 3; j++)
+            //{
+            //    for (int i = 0; i < populacja.Length; i++)
+            //    {
+            //        if (populacja[i].SzybkośćTrasy() != 0)
+            //        {
+            //            AlgorytmZachłanny.Oblicz(populacja[i]);
+            //            break;
+            //        }
+            //    }
+            //}
+
+            //liczbaBaterii = 22;
+            //for (int j = 0; j < 3; j++)
+            //{
+            //    for (int i = 0; i < populacja.Length; i++)
+            //    {
+            //        if (populacja[i].SzybkośćTrasy() != 0)
+            //        {
+            //            AlgorytmZachłanny.Oblicz(populacja[i]);
+            //            break;
+            //        }
+            //    }
+            //}
+
+
 
             //algorytm ewolucyjny
-            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-
             //-------------------------------------------------------------------------OX i TURNIEJ-------------------------------------------------------------------------
             //testy dla OX i turnieju - zmiany wielkości populacji - GRECJA
             //nazwaPlikuWejściowego = "gr9882";
             //wielkośćPopulacji = 10;
+            //populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
             //liczbaPokoleń = 5;
             //liczbaBaterii = 50;
             //prawdopodobieństwoMutacji = 0.5;
@@ -509,12 +575,10 @@ namespace TSP
 
 
 
-
-
             //----------------------------------------------------------------KRZYŻOWANIE PRZEZ WYMIANĘ PODTRAS i TURNIEJ-------------------------------------------------
             //testy dla wymiany podtras i turnieju - zmiany wielkości populacji - GRECJA
-            krzyżowanie = "przezWymianęPodtras";
-            selekcja = "turniejowa";
+            //krzyżowanie = "przezWymianęPodtras";
+            //selekcja = "turniejowa";
             //nazwaPlikuWejściowego = "gr9882";
             //populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
             //wielkośćPopulacji = 10;
@@ -722,10 +786,9 @@ namespace TSP
 
 
 
-
             //------------------------------------------------------------KRZYŻOWANIE PRZEZ WYMIANĘ PODTRAS i RULETKA WARTOŚCIOWA------------------------------------------
             //testy dla wymiany podtras i ruletki wartościowej -zmiany wielkości populacji - GRECJA
-            selekcja = "ruletkaWartościowa";
+            //selekcja = "ruletkaWartościowa";
             //nazwaPlikuWejściowego = "gr9882";
             //wielkośćPopulacji = 10;
             //populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
@@ -829,7 +892,7 @@ namespace TSP
 
 
             //testy dla wymiany podtras i ruletki wartościowej - zmiany wielkości populacji - SZWECJA
-            nazwaPlikuWejściowego = "sw24978";
+            //nazwaPlikuWejściowego = "sw24978";
             //wielkośćPopulacji = 10;
             //populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
             //liczbaPokoleń = 5;
@@ -857,77 +920,77 @@ namespace TSP
             //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
             //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-            wielkośćPopulacji = 500;
-            populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
-            liczbaPokoleń = 5;
-            liczbaBaterii = 99;
-            prawdopodobieństwoMutacji = 0.5;
+            //wielkośćPopulacji = 500;
+            //populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
+            //liczbaPokoleń = 5;
+            //liczbaBaterii = 99;
+            //prawdopodobieństwoMutacji = 0.5;
             //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
             //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
             //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-            Console.Clear();
-            //testy dla wymiany podtras i ruletki wartościowej - zmiany liczby pokoleń
-            wielkośćPopulacji = 100;
-            populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
-            liczbaPokoleń = 1;
-            liczbaBaterii = 50;
-            prawdopodobieństwoMutacji = 0.5;
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //Console.Clear();
+            ////testy dla wymiany podtras i ruletki wartościowej - zmiany liczby pokoleń
+            //wielkośćPopulacji = 100;
+            //populacja = StwórzPopulacjęZPliku("../../" + nazwaPlikuWejściowego + ".tsp");
+            //liczbaPokoleń = 1;
+            //liczbaBaterii = 50;
+            //prawdopodobieństwoMutacji = 0.5;
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-            wielkośćPopulacji = 100;
-            liczbaPokoleń = 10;
-            liczbaBaterii = 50;
-            prawdopodobieństwoMutacji = 0.5;
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //wielkośćPopulacji = 100;
+            //liczbaPokoleń = 10;
+            //liczbaBaterii = 50;
+            //prawdopodobieństwoMutacji = 0.5;
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-            Console.Clear();
-            //testy dla wymiany podtras i ruletki wartościowej - zmiany liczby baterii
-            wielkośćPopulacji = 100;
-            liczbaPokoleń = 5;
-            liczbaBaterii = 85;
-            prawdopodobieństwoMutacji = 0.5;
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //Console.Clear();
+            ////testy dla wymiany podtras i ruletki wartościowej - zmiany liczby baterii
+            //wielkośćPopulacji = 100;
+            //liczbaPokoleń = 5;
+            //liczbaBaterii = 85;
+            //prawdopodobieństwoMutacji = 0.5;
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-            wielkośćPopulacji = 100;
-            liczbaPokoleń = 5;
-            liczbaBaterii = 50;
-            prawdopodobieństwoMutacji = 0.5;
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //wielkośćPopulacji = 100;
+            //liczbaPokoleń = 5;
+            //liczbaBaterii = 50;
+            //prawdopodobieństwoMutacji = 0.5;
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-            wielkośćPopulacji = 100;
-            liczbaPokoleń = 5;
-            liczbaBaterii = 22;
-            prawdopodobieństwoMutacji = 0.5;
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //wielkośćPopulacji = 100;
+            //liczbaPokoleń = 5;
+            //liczbaBaterii = 22;
+            //prawdopodobieństwoMutacji = 0.5;
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-            Console.Clear();
-            //testy dla wymiany podtras i ruletki wartościowej - zmiany prawdopodobieństwa mutacji
-            wielkośćPopulacji = 100;
-            liczbaPokoleń = 5;
-            liczbaBaterii = 50;
-            prawdopodobieństwoMutacji = 0.1;
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //Console.Clear();
+            ////testy dla wymiany podtras i ruletki wartościowej - zmiany prawdopodobieństwa mutacji
+            //wielkośćPopulacji = 100;
+            //liczbaPokoleń = 5;
+            //liczbaBaterii = 50;
+            //prawdopodobieństwoMutacji = 0.1;
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
-            wielkośćPopulacji = 100;
-            liczbaPokoleń = 5;
-            liczbaBaterii = 50;
-            prawdopodobieństwoMutacji = 0.8;
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //wielkośćPopulacji = 100;
+            //liczbaPokoleń = 5;
+            //liczbaBaterii = 50;
+            //prawdopodobieństwoMutacji = 0.8;
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
 
             Console.ReadKey();

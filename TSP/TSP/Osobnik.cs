@@ -121,9 +121,9 @@ namespace TSP
                         baterie.Add(1000);
                 }
 
-                //jeśli po dojechaniu nie mamy baterii i nie naładowaliśmy, musimy przerwać jazdę (trasa nie spełnia warunków)
+                //jeśli po dojechaniu nie mamy baterii i nie naładowaliśmy, musimy przerwać jazdę (trasa nie spełnia warunków); błędna trasa zwraca 0
                 if (baterie.Count == 0 || baterie[0] == 0)
-                    return 0;                                        //błędna trasa zwraca 0
+                    return 0;                                        
 
                 v0 = 10 - (listaMiast[genotyp[i + 1]].z - listaMiast[genotyp[i]].z);
                 vOdcinka = v0 * (1 - 0.01 * baterie.Count);

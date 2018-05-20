@@ -11,9 +11,6 @@ namespace TSP
         public static void Oblicz(Osobnik[] populacja, string nazwaPlikuWejściowego, int wielkośćPopulacji, int liczbaPokoleń, string krzyżowanie, int liczbaBaterii, string selekcja, double prawdopodobieństwoMutacji)
         {
             for (int i = 0; i < liczbaPokoleń; i++)
-            //Stopwatch stoper = new Stopwatch();
-            //stoper.Start();
-            //while (stoper.ElapsedMilliseconds <= czasObliczeń)
             {
                 Osobnik[] nowaPopulacja = new Osobnik[wielkośćPopulacji];
 
@@ -34,7 +31,6 @@ namespace TSP
                 }
                 populacja = nowaPopulacja;
             }
-            //stoper.Stop();
 
             Console.WriteLine("Znaleziona ścieżka: ");
             for (int i = 0; i < Program.niebo.genotyp.Count; i++)
