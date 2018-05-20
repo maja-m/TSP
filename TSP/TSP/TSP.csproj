@@ -54,6 +54,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="gr9882.tsp" />
+    <None Include="Skrypt.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="sw24978.tsp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
