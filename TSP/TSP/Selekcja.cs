@@ -10,7 +10,7 @@ namespace TSP
         {
             if (typ == "turniejowa")
                 return SelekcjaTurniejowa(populacja);
-            else if (typ == "ruletkaWartościowa")
+            else if (typ == "ruletkaWartosciowa")
                 return SelekcjaRuletkaWartościowa(populacja);
             else
             {
@@ -41,10 +41,6 @@ namespace TSP
                     punktyOsobników[i] = 0;
                     break;
                 }
-                    
-                double ułamek = 1 / szybkość;
-                double mnoż = ułamek * 1000000000;
-                int floor = Convert.ToInt32(Math.Floor(mnoż));
 
                 punktyOsobników[i] = Convert.ToInt32(Math.Floor(1 / szybkość * 1000000000));
             }

@@ -10,7 +10,7 @@ namespace TSP
         {
             if (typ == "OX")
                 return KrzyżowanieOX(tata, mama);
-            else if (typ == "przezWymianęPodtras")
+            else if (typ == "przezWymianePodtras")
                 return KrzyżowaniePrzezWymianęPodtras(tata, mama);
             else
             {
@@ -58,18 +58,18 @@ namespace TSP
 
             int przejścia = tataGenotypŚcieżkowy.Count;
             int długość = Program.random.Next(1, przejścia);
-            bool flag = true;       //true - tata, flase - mama
+            bool flaga = true;       //true - tata, flase - mama
 
             for (int i = 0; i < przejścia; i++)
             {
                 długość--;
                 if (długość == 0)
                 {
-                    flag = !flag;
+                    flaga = !flaga;
                     długość = Program.random.Next(1, przejścia);
                 }
 
-                if (flag) //tata
+                if (flaga) //tata
                 {
                     if (!dzieckoGenotypŚcieżkowy.ContainsValue(tataGenotypŚcieżkowy[i]))
                         dzieckoGenotypŚcieżkowy.Add(i, tataGenotypŚcieżkowy[i]);

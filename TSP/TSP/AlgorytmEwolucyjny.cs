@@ -46,7 +46,6 @@ namespace TSP
                 for (int i = 0; i < Program.niebo.genotyp.Count; i++)
                     zapisator.Write(Osobnik.listaMiast[Program.niebo.genotyp[i]].indeks + " ");
                 zapisator.WriteLine();
-                
             }
         }
     }
