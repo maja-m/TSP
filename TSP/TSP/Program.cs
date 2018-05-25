@@ -84,8 +84,8 @@ namespace TSP
                 }
             }
 
-            populacja = StwórzPopulacjęZPliku(nazwaPlikuWejściowego + ".tsp");
-            AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
+            //populacja = StwórzPopulacjęZPliku(nazwaPlikuWejściowego + ".tsp");
+            //AlgorytmEwolucyjny.Oblicz(populacja, nazwaPlikuWejściowego, wielkośćPopulacji, liczbaPokoleń, krzyżowanie, liczbaBaterii, selekcja, prawdopodobieństwoMutacji);
 
             Console.ReadKey();
         }
