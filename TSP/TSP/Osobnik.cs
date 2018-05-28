@@ -11,10 +11,12 @@ namespace TSP
 
         //genotyp to to kolejność występowania 29 miast w ścieżce (po indeksach)
         public List<int> genotyp;
+        public int liczbaBateriiOsobnika;
 
         public Osobnik()
         {
             genotyp = new List<int>();
+            liczbaBateriiOsobnika = Program.liczbaBaterii;
         }
 
         public static Osobnik PorównajOsobników(Osobnik osobnik1, Osobnik osobnik2)
@@ -77,61 +79,87 @@ namespace TSP
         public double SzybkośćTrasy()
         {
             double t = 0;
+            double ostatnieDobreT = 0;
             double tOdcinka;
             double sOdcinka;
             double sOdcinkaDoBaterii;
             double vOdcinka;
             double v0;
-            int liczbaBaterii = Program.liczbaBaterii;
+            int liczbaBaterii = liczbaBateriiOsobnika + 1;
+            bool flaga = true;
 
-            List<double> baterie = new List<double>();   
-            for (int i = 0; i < liczbaBaterii; i++)
-                baterie.Add(1000);
-            
-            for (int i = 0; i < genotyp.Count - 1; i++)
-            {
-                //rozładowywanie baterii
-                sOdcinka = OdległośćMiędzyOSobnikami(i, i + 1);
-                sOdcinkaDoBaterii = sOdcinka;
-
-                while (sOdcinkaDoBaterii > 0)
+            while (flaga) {
+                if (flaga)
                 {
-                    if (baterie.Count == 0)
-                        return 0;
+                    ostatnieDobreT = t;
+                    t = 0;
+                    liczbaBaterii--;
+                }
 
-                    if (baterie[baterie.Count - 1] < sOdcinkaDoBaterii)
+                List<double> baterie = new List<double>();
+                for (int i = 0; i < liczbaBaterii; i++)
+                    baterie.Add(1000);
+
+                for (int i = 0; i < genotyp.Count - 1; i++)
+                {
+                    //rozładowywanie baterii
+                    sOdcinka = OdległośćMiędzyOSobnikami(i, i + 1);
+                    sOdcinkaDoBaterii = sOdcinka;
+
+                    while (sOdcinkaDoBaterii > 0)
                     {
-                        sOdcinkaDoBaterii -= baterie[baterie.Count - 1];
-                        baterie.RemoveAt(baterie.Count - 1);
+                        if (baterie.Count == 0)
+                        {
+                            t = 0;
+                            flaga = false;
+                            break;
+                        }
+
+                        if (baterie[baterie.Count - 1] < sOdcinkaDoBaterii)
+                        {
+                            sOdcinkaDoBaterii -= baterie[baterie.Count - 1];
+                            baterie.RemoveAt(baterie.Count - 1);
+                        }
+                        else
+                        {
+                            baterie[baterie.Count - 1] -= sOdcinkaDoBaterii;
+                            sOdcinkaDoBaterii = 0;
+                        }
+                    }
+
+                    //ładowanie baterii
+                    if (genotyp[i] % 5 == 1)
+                    {
+                        if (baterie.Count != 0)
+                            baterie[baterie.Count - 1] = 1000;
+
+                        for (int j = baterie.Count; j < liczbaBaterii; j++)
+                            baterie.Add(1000);
+                    }
+
+                    //jeśli po dojechaniu nie mamy baterii i nie naładowaliśmy, musimy przerwać jazdę (trasa nie spełnia warunków); błędna trasa zwraca 0
+                    if (baterie.Count == 0 || baterie[0] == 0)
+                    {
+                        t = 0;
+                        flaga = false;
+                        break;
                     }
                     else
                     {
-                        baterie[baterie.Count - 1] -= sOdcinkaDoBaterii;
-                        sOdcinkaDoBaterii = 0;
+                        v0 = 10 - (listaMiast[genotyp[i + 1]].z - listaMiast[genotyp[i]].z);
+                        vOdcinka = v0 * (1 - 0.01 * baterie.Count);
+                        tOdcinka = sOdcinka / vOdcinka;
+                        t += tOdcinka;
                     }
                 }
-
-                //ładowanie baterii
-                if (genotyp[i] % 5 == 1)
-                {
-                    if (baterie.Count != 0)
-                        baterie[baterie.Count - 1] = 1000;
-
-                    for (int j = baterie.Count; j < liczbaBaterii; j++)
-                        baterie.Add(1000);
-                }
-
-                //jeśli po dojechaniu nie mamy baterii i nie naładowaliśmy, musimy przerwać jazdę (trasa nie spełnia warunków); błędna trasa zwraca 0
-                if (baterie.Count == 0 || baterie[0] == 0)
-                    return 0;                                        
-
-                v0 = 10 - (listaMiast[genotyp[i + 1]].z - listaMiast[genotyp[i]].z);
-                vOdcinka = v0 * (1 - 0.01 * baterie.Count);
-                tOdcinka = sOdcinka / vOdcinka;
-                t += tOdcinka;
             }
 
-            return t;
+            if (ostatnieDobreT != 0 && liczbaBateriiOsobnika > liczbaBaterii + 1)
+            {
+                liczbaBateriiOsobnika = liczbaBaterii + 1;
+            }
+
+            return ostatnieDobreT;
         }
     }
 }

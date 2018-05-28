@@ -102,8 +102,8 @@ namespace TSP
                     }
                 }
             }
-            
-            return ZmianaReprezentacjiNaPorządkową(dzieckoGenotypŚcieżkowy);
+
+            return ZmianaReprezentacjiNaŚcieżkową(dzieckoGenotypŚcieżkowy);
         }
 
         public static SortedList<int, int> ZmianaReprezentacjiNaŚcieżkową(Osobnik osobnik)
@@ -118,7 +118,7 @@ namespace TSP
             return ścieżka;
         }
 
-        public static Osobnik ZmianaReprezentacjiNaPorządkową(SortedList<int, int> ścieżka)
+        public static Osobnik ZmianaReprezentacjiNaŚcieżkową(SortedList<int, int> ścieżka)
         {
             Osobnik osobnik = new Osobnik();
             int indeks = 0;
