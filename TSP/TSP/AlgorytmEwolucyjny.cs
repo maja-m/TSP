@@ -18,15 +18,15 @@ namespace TSP
                 {
                     Osobnik tata = Selekcja.Selekcjonuj(Program.selekcja, populacja);
                     Osobnik mama = Selekcja.Selekcjonuj(Program.selekcja, populacja);
-                    Osobnik dziecko = Krzyżowanie.KrzyżowanieOX(tata, mama);
+                    Osobnik dziecko = Krzyżowanie.Krzyżuj(krzyżowanie, tata, mama);
 
                     //konkurencja między rodzicami i dzieckiem
-                    if (tata.DługośćTrasy < mama.DługośćTrasy)
+                    if (tata.SzybkośćTrasy() < mama.SzybkośćTrasy())
                         nowaPopulacja[j] = tata;
                     else
                         nowaPopulacja[j] = mama;
 
-                    if (dziecko.DługośćTrasy < nowaPopulacja[j].DługośćTrasy)
+                    if (dziecko.SzybkośćTrasy() < nowaPopulacja[j].SzybkośćTrasy())
                         nowaPopulacja[j] = dziecko;
                 }
                 populacja = nowaPopulacja;
