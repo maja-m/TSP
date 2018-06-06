@@ -121,70 +121,83 @@ namespace TSP
             SortedList<int, int> dzieckoGenotypSąsiedztwa = new SortedList<int, int>();
 
             int długośćOsobnika = tataGenotypSąsiedztwa.Count;
-            int długośćPodtrasy = Program.random.Next(1, długośćOsobnika);
-            bool flaga = true;       //true - tata, flase - mama
-            int ostatniElementDziecka = 0;
-            int nowyOstatniElementDziecka = 0;
+            bool flaga = true;  //tata
+            int punktPoczątkowy = 1;
+            int wylosowanaDługośćPodtrasy = 3;
+            int długośćObecnejPodtrasy = 3;
+            int losowyIndeksRodzica = 0;
+            int wylosowanaWartość = 0;
 
-            int losowaKrawędź = 1;// Program.random.Next(długośćOsobnika);
-            dzieckoGenotypSąsiedztwa.Add(losowaKrawędź, tataGenotypSąsiedztwa[losowaKrawędź]);
-            tataGenotypSąsiedztwa.Remove(losowaKrawędź);
-            flaga = false;
+            dzieckoGenotypSąsiedztwa.Add(punktPoczątkowy, tataGenotypSąsiedztwa[punktPoczątkowy]);
+            int ostatnioDodanyKluczDziecka = punktPoczątkowy;
+            int ostatnioDodanaWartośćDziecka = tataGenotypSąsiedztwa[punktPoczątkowy];
+            mamaGenotypSąsiedztwa.RemoveAt(mamaGenotypSąsiedztwa.IndexOfValue(ostatnioDodanaWartośćDziecka));
+            tataGenotypSąsiedztwa.Remove(ostatnioDodanyKluczDziecka);
 
-            for (int i = 0; i < długośćOsobnika-1; i++)
+            tataGenotypSąsiedztwa.Remove(punktPoczątkowy);
+            mamaGenotypSąsiedztwa.Remove(punktPoczątkowy);
+
+            while (dzieckoGenotypSąsiedztwa.Count < długośćOsobnika)
             {
-                if (flaga == true) //tata
+                if (flaga == true)      //tata
                 {
-                    ostatniElementDziecka = dzieckoGenotypSąsiedztwa[losowaKrawędź];        //pamiętaj o zmiennej losowa krawędź!
-                    do
+                    for (int i = 0; i < długośćObecnejPodtrasy; i++)
                     {
-                        if (dzieckoGenotypSąsiedztwa.ContainsKey(ostatniElementDziecka) || dzieckoGenotypSąsiedztwa.ContainsValue(tataGenotypSąsiedztwa[ostatniElementDziecka]))
+                        if (tataGenotypSąsiedztwa.ContainsKey(ostatnioDodanaWartośćDziecka) && !dzieckoGenotypSąsiedztwa.ContainsValue(tataGenotypSąsiedztwa[ostatnioDodanaWartośćDziecka]))
                         {
-                            losowaKrawędź = tataGenotypSąsiedztwa.Keys[Program.random.Next(1, tataGenotypSąsiedztwa.Count - 1)];
+                            dzieckoGenotypSąsiedztwa.Add(ostatnioDodanaWartośćDziecka, tataGenotypSąsiedztwa[ostatnioDodanaWartośćDziecka]);
 
-                            dzieckoGenotypSąsiedztwa.Add(ostatniElementDziecka, losowaKrawędź);
-                            losowaKrawędź = ostatniElementDziecka;
-                            mamaGenotypSąsiedztwa.Remove(ostatniElementDziecka);
-                            tataGenotypSąsiedztwa.Remove(ostatniElementDziecka);
-                            flaga = true;
+                            ostatnioDodanyKluczDziecka = ostatnioDodanaWartośćDziecka;
+                            ostatnioDodanaWartośćDziecka = tataGenotypSąsiedztwa[ostatnioDodanaWartośćDziecka];
+                            mamaGenotypSąsiedztwa.RemoveAt(mamaGenotypSąsiedztwa.IndexOfValue(ostatnioDodanaWartośćDziecka));
+                            tataGenotypSąsiedztwa.Remove(ostatnioDodanyKluczDziecka);
                         }
-                        else
+                        else //jeśli dziecko już zawiera tę wartość, losujemy jakąś inną z puli wartości taty
                         {
-                            dzieckoGenotypSąsiedztwa.Add(ostatniElementDziecka, tataGenotypSąsiedztwa[ostatniElementDziecka]);
-                            losowaKrawędź = ostatniElementDziecka;
-                            tataGenotypSąsiedztwa.Remove(ostatniElementDziecka);
-                            mamaGenotypSąsiedztwa.Remove(ostatniElementDziecka);
-                            flaga = false;
+                            losowyIndeksRodzica = Program.random.Next(tataGenotypSąsiedztwa.Count);
+                            wylosowanaWartość = tataGenotypSąsiedztwa[tataGenotypSąsiedztwa.Keys[losowyIndeksRodzica]];
+
+                            dzieckoGenotypSąsiedztwa.Add(ostatnioDodanaWartośćDziecka, wylosowanaWartość);
+
+                            ostatnioDodanyKluczDziecka = ostatnioDodanaWartośćDziecka;
+                            ostatnioDodanaWartośćDziecka = wylosowanaWartość;
+                            mamaGenotypSąsiedztwa.RemoveAt(mamaGenotypSąsiedztwa.IndexOfValue(ostatnioDodanaWartośćDziecka));
+                            tataGenotypSąsiedztwa.Remove(ostatnioDodanyKluczDziecka);
                         }
-                    } while (flaga == true);
-                        
+                    }
+                    flaga = false;
                 }
-                else //mama
+                else
                 {
-                    ostatniElementDziecka = dzieckoGenotypSąsiedztwa[losowaKrawędź];
-                    do
+                    for (int i = 0; i < długośćObecnejPodtrasy; i++)
                     {
-                        if (dzieckoGenotypSąsiedztwa.ContainsKey(ostatniElementDziecka) || dzieckoGenotypSąsiedztwa.ContainsValue(mamaGenotypSąsiedztwa[ostatniElementDziecka]))
+                        if (mamaGenotypSąsiedztwa.ContainsKey(ostatnioDodanaWartośćDziecka) && !dzieckoGenotypSąsiedztwa.ContainsValue(mamaGenotypSąsiedztwa[ostatnioDodanaWartośćDziecka]))
                         {
-                            losowaKrawędź = mamaGenotypSąsiedztwa.Keys[Program.random.Next(1, mamaGenotypSąsiedztwa.Count - 1)];
+                            dzieckoGenotypSąsiedztwa.Add(ostatnioDodanaWartośćDziecka, mamaGenotypSąsiedztwa[ostatnioDodanaWartośćDziecka]);
 
-                            dzieckoGenotypSąsiedztwa.Add(ostatniElementDziecka, losowaKrawędź);
-                            losowaKrawędź = ostatniElementDziecka;
-                            mamaGenotypSąsiedztwa.Remove(ostatniElementDziecka);
-                            tataGenotypSąsiedztwa.Remove(ostatniElementDziecka);
-                            flaga = true;
-
+                            ostatnioDodanyKluczDziecka = ostatnioDodanaWartośćDziecka;
+                            ostatnioDodanaWartośćDziecka = mamaGenotypSąsiedztwa[ostatnioDodanaWartośćDziecka];
+                            tataGenotypSąsiedztwa.RemoveAt(tataGenotypSąsiedztwa.IndexOfValue(ostatnioDodanaWartośćDziecka));
+                            mamaGenotypSąsiedztwa.Remove(ostatnioDodanyKluczDziecka);
                         }
-                        else
+                        else //jeśli dziecko już zawiera tę wartość, losujemy jakąś inną z puli wartości mamy
                         {
-                            dzieckoGenotypSąsiedztwa.Add(ostatniElementDziecka, mamaGenotypSąsiedztwa[ostatniElementDziecka]);
-                            losowaKrawędź = ostatniElementDziecka;
-                            mamaGenotypSąsiedztwa.Remove(ostatniElementDziecka);
-                            tataGenotypSąsiedztwa.Remove(ostatniElementDziecka);
-                            flaga = true;
+                            losowyIndeksRodzica = Program.random.Next(mamaGenotypSąsiedztwa.Count);
+                            wylosowanaWartość = mamaGenotypSąsiedztwa[mamaGenotypSąsiedztwa.Keys[losowyIndeksRodzica]];
+
+                            dzieckoGenotypSąsiedztwa.Add(ostatnioDodanaWartośćDziecka, wylosowanaWartość);
+
+                            ostatnioDodanyKluczDziecka = ostatnioDodanaWartośćDziecka;
+                            ostatnioDodanaWartośćDziecka = wylosowanaWartość;
+                            tataGenotypSąsiedztwa.RemoveAt(tataGenotypSąsiedztwa.IndexOfValue(ostatnioDodanaWartośćDziecka));
+                            mamaGenotypSąsiedztwa.Remove(ostatnioDodanyKluczDziecka);
                         }
-                    } while (flaga == false);
+                    }
+                    flaga = true;
                 }
+                
+                //todo:
+                //usuwanie jedynki na początku i zapamiętywanie jej w zmiennej i dodawanie jako ostatniej wartości na koniec
             }
 
             return ZmianaReprezentacjiNaŚcieżkową(dzieckoGenotypSąsiedztwa);
