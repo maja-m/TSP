@@ -9,7 +9,7 @@ namespace TSP
     {
         public static Osobnik Oblicz(Osobnik trasa)
         {
-            int czasObliczeń = 1000 * 60 * 1;  //1 minuta
+            int czasObliczeń = 1000 * 60 * 30;  //30 minut
 
             Stopwatch stoper = new Stopwatch();
             stoper.Start();
