@@ -19,7 +19,7 @@ namespace TSP
             }
         }
 
-        public static Osobnik SelekcjaTurniejowa(Osobnik[] populacja)
+        static Osobnik SelekcjaTurniejowa(Osobnik[] populacja)
         {
             Osobnik osobnik1 = populacja[Program.random.Next(Program.wielkośćPopulacji)];
             Osobnik osobnik2 = populacja[Program.random.Next(Program.wielkośćPopulacji)];
@@ -27,7 +27,7 @@ namespace TSP
             return Osobnik.PorównajOsobników(osobnik1, osobnik2);
         }
 
-        public static Osobnik SelekcjaRuletkaWartościowa(Osobnik[] populacja)
+        static Osobnik SelekcjaRuletkaWartościowa(Osobnik[] populacja)
         {
             int[] punktyOsobników = new int[populacja.Length];
 

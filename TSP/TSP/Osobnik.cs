@@ -9,7 +9,7 @@ namespace TSP
     {
         public static List<Miasto> listaMiast;
 
-        //genotyp to to kolejność występowania 29 miast w ścieżce (po indeksach)
+        //genotyp to to kolejność występowania miast w ścieżce (po indeksach)
         public List<int> genotyp;
         public int liczbaBateriiOsobnika;
 
@@ -32,24 +32,6 @@ namespace TSP
             }
             else
                 return osobnik2;
-        }
-
-        public double DługośćTrasy
-        {
-            get
-            {
-                double suma = 0;
-
-                for (int i = 0; i < listaMiast.Count - 1; i++)
-                {
-                    var miasto1 = genotyp[i];
-                    var miasto2 = genotyp[i + 1];
-                    var x2 = Math.Pow(listaMiast[miasto2].x - listaMiast[miasto1].x, 2);
-                    var y2 = Math.Pow(listaMiast[miasto2].y - listaMiast[miasto1].y, 2);
-                    suma += Math.Sqrt(x2 + y2);
-                }
-                return suma;
-            }
         }
 
         public double OdległośćMiędzyOSobnikami(int idPierwszego, int idDrugiego)
@@ -155,9 +137,7 @@ namespace TSP
             }
 
             if (ostatnieDobreT != 0 && liczbaBateriiOsobnika > liczbaBaterii + 1)
-            {
                 liczbaBateriiOsobnika = liczbaBaterii + 1;
-            }
 
             return ostatnieDobreT;
         }
