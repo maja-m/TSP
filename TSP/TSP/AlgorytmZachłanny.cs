@@ -39,11 +39,13 @@ namespace TSP
             for (int i = 0; i < trasa.genotyp.Count; i++)
                 Console.Write(Osobnik.listaMiast[trasa.genotyp[i]].indeks + " ");
             Console.WriteLine("\nSzybkość trasy: " + trasa.SzybkośćTrasy());
+            Console.WriteLine("\nLiczba baterii: " + trasa.liczbaBateriiOsobnika);
 
             using (System.IO.StreamWriter zapisator =
             new System.IO.StreamWriter(@"../../Wyniki/Z" + Program.nazwaPlikuWejściowego + "-" + Program.liczbaBaterii + "-" + DateTime.Now.ToString().Replace(':', '-') + ".txt"))
             {
                 zapisator.WriteLine("\nSzybkość trasy: " + trasa.SzybkośćTrasy());
+                zapisator.WriteLine("\nLiczba baterii: " + trasa.liczbaBateriiOsobnika);
                 zapisator.WriteLine();
 
                 for (int i = 0; i < trasa.genotyp.Count; i++)
